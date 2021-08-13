@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1321
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityAssistant", "SecurityAssistant\SecurityAssistant.csproj", "{C85D897E-33AC-45FE-A68D-29F364F99082}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C85D897E-33AC-45FE-A68D-29F364F99082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C85D897E-33AC-45FE-A68D-29F364F99082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C85D897E-33AC-45FE-A68D-29F364F99082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C85D897E-33AC-45FE-A68D-29F364F99082}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {84B98F42-3271-460E-8411-F57B2A026EF3}
+	EndGlobalSection
+EndGlobal
