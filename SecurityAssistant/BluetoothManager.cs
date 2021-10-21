@@ -1,52 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using InTheHand.Net;
+using InTheHand.Net.Bluetooth;
+using InTheHand.Net.Sockets;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using InTheHand.Net;
-using InTheHand.Net.Bluetooth;
-using InTheHand.Net.Sockets;
 
 namespace SecurityAssistant
 {
     public class BluetoothManager
     {
-        private BluetoothClient _bluetoothClient;
+        private readonly BluetoothClient _bluetoothClient;
         private BluetoothRadio _bluetoothRadio;
+        public bool Success { get; set; }
+        public bool IsStart { get; set; }
 
         public BluetoothManager()
         {
             _bluetoothClient = new BluetoothClient();
-            _bluetoothRadio = BluetoothRadio.Default;
-            // _bluetoothRadio.Mode = RadioMode.Discoverable;
-            _bluetoothRadio.Mode = RadioMode.Connectable;
         }
-
-        public void Open() => Process.Start(@"ms-settings:bluetooth");
 
         public void Connect(BluetoothAddress address)
         {
             _bluetoothClient.Connect(address, BluetoothService.GenericAudio);
         }
-        public async void Start(string name)
+        public async void Start(Form1 form1, string name)
         {
-            // var device = bluetoothClient.DiscoverDevices().ToArray().Where(name => name.DeviceName == "vivo S1").First();
-            // bluetoothClient.Connect()
-            // BluetoothListener bluetoothListener = new BluetoothListener(device.);
-            // bluetoothRadio.Mode = BluetoothService.
+            _bluetoothRadio = BluetoothRadio.Default;
+            if (BluetoothRadio.Default == null)
+            {
+                MessageBox.Show("Please open bluetooth");
+                return;
+            }
+            _bluetoothRadio.Mode = RadioMode.Connectable;
             await Task.Run(() =>
             {
-
                 var active = false;
-                // _bluetoothClient.Client.BeginConnect();
-                BluetoothDeviceInfo[] paired;
-                while (true)
+                var nameCorrect = false;
+                while (IsStart)
                 {
-                    // var discoverd = _bluetoothClient.DiscoverDevices().ToArray();
-                    paired = _bluetoothClient.PairedDevices.ToArray();
+                    var paired = _bluetoothClient.PairedDevices.ToArray();
                     try
                     {
                         if (paired.Length > 0)
@@ -55,7 +48,16 @@ namespace SecurityAssistant
                             {
                                 if (device.DeviceName == name)
                                 {
-
+                                    if (device.Connected)
+                                    {
+                                        form1.ConnectStatusLabel.Text = "Connected";
+                                        form1.ConnectStatusLabel.BackColor = System.Drawing.Color.Green;
+                                    }
+                                    else
+                                    {
+                                        form1.ConnectStatusLabel.Text = "Not Connect";
+                                        form1.ConnectStatusLabel.BackColor = System.Drawing.Color.Red;
+                                    }
                                     if (!device.Connected && active)
                                     {
                                         Screen.LockWorkStation();
@@ -69,18 +71,25 @@ namespace SecurityAssistant
                                     {
                                         Connect(device.DeviceAddress);
                                     }
-
+                                    nameCorrect = true;
                                 }
                             }
-
-
+                            if (!nameCorrect)
+                            {
+                                MessageBox.Show("The bluetooth name is not correct");
+                                Success = false;
+                                return;
+                            }
+                            else
+                            {
+                                Success = true;
+                            }
                         }
 
                         Thread.Sleep(1000);
                     }
-                    catch (System.Exception e)
+                    catch (System.Exception)
                     {
-
                         ;
                     }
                 }
