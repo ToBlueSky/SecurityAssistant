@@ -1,5 +1,6 @@
 # SecurityAssistant
-The software is used for lock screen automatically when you left your computer a distance
+Feature 1: Lock screen automatically when you left your computer a distance
+Feature 2: Notify user quit Smart Card
 
 # How to use it?
 1. Pair you device with PC.

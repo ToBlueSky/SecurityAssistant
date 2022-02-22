@@ -36,6 +36,7 @@
             this.ConnectStatusLabel = new System.Windows.Forms.Label();
             this.StopButton = new System.Windows.Forms.Button();
             this.RunningStatusLabel = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // startButton
@@ -107,11 +108,23 @@
             this.RunningStatusLabel.TabIndex = 7;
             this.RunningStatusLabel.Text = "RunningStatus";
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(486, 395);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(237, 13);
+            this.linkLabel1.TabIndex = 8;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "https://github.com/ToBlueSky/SecurityAssistant";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(739, 440);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.RunningStatusLabel);
             this.Controls.Add(this.StopButton);
             this.Controls.Add(this.ConnectStatusLabel);
@@ -136,6 +149,7 @@
         public System.Windows.Forms.Label ConnectStatusLabel;
         private System.Windows.Forms.Button StopButton;
         public System.Windows.Forms.Label RunningStatusLabel;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 

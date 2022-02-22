@@ -37,6 +37,8 @@ namespace SecurityAssistant
             {
                 var active = false;
                 var nameCorrect = false;
+                
+
                 while (IsStart)
                 {
                     var paired = _bluetoothClient.PairedDevices.ToArray();
@@ -55,8 +57,8 @@ namespace SecurityAssistant
                                     }
                                     else
                                     {
-                                        form1.ConnectStatusLabel.Text = "Not Connect";
-                                        form1.ConnectStatusLabel.BackColor = System.Drawing.Color.Red;
+                                        form1.ConnectStatusLabel.Text = "Connecting";
+                                        form1.ConnectStatusLabel.BackColor = System.Drawing.Color.Yellow;
                                     }
                                     if (!device.Connected && active)
                                     {

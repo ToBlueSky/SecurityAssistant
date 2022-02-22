@@ -16,7 +16,10 @@ namespace SecurityAssistant
             {
                 this.bluetoothNameInput.Text = File.ReadAllText(_dataFile);
             }
+            SmartCard.SmartCardMonitorAsync(15);
         }
+
+
 
         private void start_Click(object sender, EventArgs e)
         {
@@ -50,6 +53,12 @@ namespace SecurityAssistant
             BluetoothManager.IsStart = false;
             this.RunningStatusLabel.Text = "Stopped";
             this.RunningStatusLabel.BackColor = System.Drawing.Color.Yellow;
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/ToBlueSky/SecurityAssistant");
+
         }
     }
 }
