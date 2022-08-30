@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Management;
 using System.Text;
@@ -11,6 +13,7 @@ namespace SecurityAssistant
 {
     public class SmartCard
     {
+        public static bool IsStart;
         private static string Getdevice()
         {
             StringBuilder sbDevHst = new StringBuilder();
@@ -29,12 +32,15 @@ namespace SecurityAssistant
             return res.Contains("CardOS");
         }
 
-        public static async void SmartCardMonitorAsync(int time_sencond)
+        
+
+        public static async void SmartCardMonitorAsync(int time_sencond, string path)
         {
             await Task.Run(()=>
             {
+                var info = new InfoDisplay();
                 var count = 0;
-                while (true)
+                while (IsStart)
                 {
                     var res = HaveSmartCard();
                     if (res)
@@ -42,7 +48,8 @@ namespace SecurityAssistant
                         count++;
                         if (count > time_sencond/2)
                         {
-                            MessageBox.Show("Please take away Smart Card if don't use it anymore", "SmartCard",MessageBoxButtons.OK, MessageBoxIcon.Warning,MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
+                            info.PictureDisplay(path);
+                            //MessageBox.Show("Please take away Smart Card if don't use it anymore", "SmartCard",MessageBoxButtons.OK, MessageBoxIcon.Warning,MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
                             count = 0;
                         }
                     }
