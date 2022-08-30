@@ -9,5 +9,5 @@ Feature 2: Notify user quit Smart Card
 3. If you want to stop the function, just click stop button or close window.
 ## Feature 2
 1. Open and select picture or input path of image in text box
-2. Input scan cycle 
+2. Input scan cycle (20 is recommendation)
 3. Click button start
